@@ -11,6 +11,6 @@ class ShellCommandInvoker {
         def process = processBuilder.start()
         process.waitForProcessOutput(stdout, stderr)
 
-        new ShellCommandResult(stdout: stdout, stderr: stderr, statusCode: process.exitValue())
+        new ShellCommandResult(stdout: stdout.toString(), stderr: stderr.toString(), statusCode: process.exitValue())
     }
 }
