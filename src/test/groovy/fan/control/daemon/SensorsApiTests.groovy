@@ -27,7 +27,7 @@ class SensorsApiTests extends Specification {
 
     private def givenSensorsCommandOutputIs(String outputSnapshotFileName) {
         def snapshotOutput = getClass().getResource(outputSnapshotFileName).text
-        commandInvoker.invokeCommand("sensors -u") >> commandResult
+        commandInvoker.invokeCommandEnsuringSuccess(_ as String) >> commandResult
         commandResult.getStdout() >> snapshotOutput
     }
 }

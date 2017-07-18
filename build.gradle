@@ -11,8 +11,8 @@ dependencies {
             'cglib:cglib-nodep:3.2.5'
 }
 
-compileGroovy {
-    configure(groovyOptions) {
-        configurationScript = file("$rootDir/compiler-config.groovy")
-    }
-}
+//compileGroovy {
+//    configure(groovyOptions) {
+//        configurationScript = file("$rootDir/compiler-config.groovy")
+//    }
+//}

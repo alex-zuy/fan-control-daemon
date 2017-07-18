@@ -1,7 +1,10 @@
 package fan.control.daemon
 
+import groovy.transform.CompileStatic
+
 import java.util.regex.Pattern
 
+@CompileStatic
 class SensorsApi {
 
     private static class Patterns {
@@ -46,7 +49,7 @@ class SensorsApi {
     }
 
     SensorsData pullSensorsData() {
-        def commandResult = commandInvoker.invokeCommand(COMMAND_SENSORS)
+        def commandResult = commandInvoker.invokeCommandEnsuringSuccess(COMMAND_SENSORS)
 
         def commandOutputLines = commandResult.stdout.readLines()
         def coreTemperatures = []
