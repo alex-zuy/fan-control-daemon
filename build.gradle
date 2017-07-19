@@ -8,7 +8,8 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.11'
 
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4',
-            'cglib:cglib-nodep:3.2.5'
+            'cglib:cglib-nodep:3.2.5',
+            'org.objenesis:objenesis:2.6'
 }
 
 //compileGroovy {

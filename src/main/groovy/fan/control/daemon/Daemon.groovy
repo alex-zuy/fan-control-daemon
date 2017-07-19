@@ -28,11 +28,20 @@ class Daemon {
 
             FanSpeed nextFanSpeed
             switch (currentFanSpeed) {
-                case FanSpeed.HIGH && maxCoresTemperature < settingValues.highFanSpeedStopTemperature:
-                    nextFanSpeed = FanSpeed.LOW
+                case FanSpeed.HIGH:
+                    if (maxCoresTemperature < settingValues.highFanSpeedStopTemperature) {
+                        nextFanSpeed = FanSpeed.LOW
+                    } else {
+                        nextFanSpeed = FanSpeed.HIGH
+                    }
                     break
-                case (FanSpeed.LOW || FanSpeed.STOPPED) && maxCoresTemperature > settingValues.highFanSpeedStartTemperature:
-                    nextFanSpeed = FanSpeed.HIGH
+                case FanSpeed.LOW:
+                case FanSpeed.STOPPED:
+                    if (maxCoresTemperature > settingValues.highFanSpeedStartTemperature) {
+                        nextFanSpeed = FanSpeed.HIGH
+                    } else {
+                        nextFanSpeed = FanSpeed.LOW
+                    }
                     break
                 default:
                     fanControlApi.setFanSpeed(FanSpeed.HIGH)
