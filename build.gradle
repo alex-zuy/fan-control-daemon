@@ -8,8 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.netflix.nebula:gradle-ospackage-plugin:4.4.0',
-                'org.spockframework:spock-core:1.1-groovy-2.4'
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:4.4.0'
     }
 }
 
