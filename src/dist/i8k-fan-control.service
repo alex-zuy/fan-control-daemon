@@ -1,0 +1,9 @@
+[Unit]
+Description=A daemon to automatically adjust cooling fans speed using 'i8k' driver in accordance with CPU temperature provided by 'lm-sensors'
+Wants=lm-sensors.service
+After=lm-sensors.service
+
+[Service]
+Restart=on-failure
+Environment="FAN_CONTROL_CONFIG_PATH=/etc/i8kFanControl/settings.properties"
+ExecStart=/usr/lib/i8kFanControl/bin/fan-control-daemon

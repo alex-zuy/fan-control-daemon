@@ -1,4 +1,17 @@
 apply plugin: 'groovy'
+apply plugin: 'application'
+apply plugin: 'nebula.deb'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:4.4.0',
+                'org.spockframework:spock-core:1.1-groovy-2.4'
+    }
+}
 
 repositories {
     jcenter()
@@ -7,13 +20,44 @@ repositories {
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.11'
 
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4',
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4',
             'cglib:cglib-nodep:3.2.5',
             'org.objenesis:objenesis:2.6'
 }
 
-//compileGroovy {
-//    configure(groovyOptions) {
-//        configurationScript = file("$rootDir/compiler-config.groovy")
-//    }
-//}
+version '1.0'
+mainClassName = 'fan.control.daemon.Main'
+
+task buildDeb(type: Deb) {
+    packageName 'i8k-fan-control'
+    release '1'
+    os LINUX
+
+    postInstall file('src/hooks/post-install.sh')
+    preUninstall file('src/hooks/pre-uninstall.sh')
+
+    requires('default-jre')
+    requires('i8kutils')
+
+    from('src/dist/i8k-fan-control.service') {
+        into '/usr/lib/systemd/system'
+    }
+
+    from('src/dist/settings.properties') {
+        into '/etc/i8kFanControl'
+    }
+
+    into '/usr/lib/i8kFanControl'
+
+    from(jar.outputs.files) {
+        into 'lib'
+    }
+    from(configurations.runtime) {
+        into 'lib'
+    }
+    from(startScripts.outputs) {
+        into 'bin'
+    }
+}
+
+buildDeb.dependsOn(startScripts)

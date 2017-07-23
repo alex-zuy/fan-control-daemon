@@ -40,8 +40,8 @@ class SettingsProvider {
     private static SettingValues buildSettingValues(Map<String, String> settings) {
         return new SettingValues(
                 checkIntervalMs: Integer.parseInt(settings[SettingNames.CHECK_INTERVAL_MS]),
-                highSpeedStartTemperature: Integer.parseInt(settings[SettingNames.HIGH_FAN_SPEED_START_TEMPERATURE]),
-                highSpeedStopTemperature: Integer.parseInt(settings[SettingNames.HIGH_FAN_SPED_STOP_TEMPERATURE])
+                highFanSpeedStartTemperature: Integer.parseInt(settings[SettingNames.HIGH_FAN_SPEED_START_TEMPERATURE]),
+                highFanSpeedStopTemperature: Integer.parseInt(settings[SettingNames.HIGH_FAN_SPED_STOP_TEMPERATURE])
         )
     }
 }
