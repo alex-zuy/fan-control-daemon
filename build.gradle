@@ -24,7 +24,7 @@ dependencies {
             'org.objenesis:objenesis:2.6'
 }
 
-version '1.0'
+version '1.0.1'
 mainClassName = 'fan.control.daemon.Main'
 
 task buildDeb(type: Deb) {

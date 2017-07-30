@@ -55,7 +55,7 @@ class FanControlApi {
         int coolerValue = validCoolerValues.min()
         FanSpeed.valueForSpeedValue(coolerValue)
                 .orElseThrow {
-            new IllegalStateException("No ${FanSpeed.typeName} value exist for speed value $coolerValue")
+            new IllegalStateException("No ${FanSpeed.class.getTypeName()} value exist for speed value $coolerValue")
         }
     }
 }

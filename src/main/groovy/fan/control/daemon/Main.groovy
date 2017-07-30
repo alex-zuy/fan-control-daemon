@@ -11,6 +11,11 @@ class Main {
         def sensorsApi = new SensorsApi(shellCommandInvoker)
 
         def daemon = new Daemon(fanControlApi, sensorsApi, settingsProvider)
+
+        // for some reason i8kfan utility may report invalid values for fan speeds at startup (e.g. fan speed 3)
+        // to avoid crashed due to this behavior we set fan speed to some valid value
+        fanControlApi.setFanSpeed(FanControlApi.FanSpeed.HIGH)
+
         daemon.run()
     }
 
