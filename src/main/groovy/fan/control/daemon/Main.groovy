@@ -20,11 +20,14 @@ class Main {
     }
 
     private static Properties resolveSettings() {
+        def settingsProperties = new Properties()
         def settingsPath = System.getenv("FAN_CONTROL_CONFIG_PATH")
-        def settings = new Properties()
         if (settingsPath) {
-            new File(settingsPath).withInputStream { settings.load(it) }
+            def file = new File(settingsPath)
+            if (file.exists()) {
+                file.withInputStream { settingsProperties.load(it) }
+            }
         }
-        settings
+        settingsProperties
     }
 }

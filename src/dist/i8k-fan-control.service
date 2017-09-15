@@ -7,3 +7,6 @@ After=lm-sensors.service
 Restart=on-failure
 Environment="FAN_CONTROL_CONFIG_PATH=/etc/i8kFanControl/settings.properties"
 ExecStart=/usr/lib/i8kFanControl/bin/fan-control-daemon
+
+[Install]
+WantedBy=multi-user.target

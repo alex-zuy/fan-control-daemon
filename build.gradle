@@ -42,7 +42,7 @@ task buildDeb(type: Deb) {
         into '/usr/lib/systemd/system'
     }
 
-    from('src/dist/settings.properties') {
+    from('src/dist/settings-default.properties') {
         into '/etc/i8kFanControl'
     }
 
